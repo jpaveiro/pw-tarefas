@@ -20,6 +20,13 @@ public class TarefaController {
         return tarefaService.listar();
     }
 
+    @PostMapping
+    public ResponseEntity<Tarefa> cadastrar(@RequestBody Tarefa tarefa) {
+        return ResponseEntity
+                .status(200)
+                .body(tarefaService.cadastrar(tarefa));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletar(@PathVariable Long id) {
 

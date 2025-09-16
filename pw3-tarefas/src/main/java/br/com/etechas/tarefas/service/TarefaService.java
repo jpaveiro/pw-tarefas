@@ -6,6 +6,8 @@ import br.com.etechas.tarefas.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,6 +18,15 @@ public class TarefaService {
 
     public List<Tarefa> listar(){
         return repository.findAll();
+    }
+
+    public Tarefa cadastrar(Tarefa tarefa) {
+        if (tarefa == null) throw new RuntimeException("Tarefa inválida.");
+
+        if (tarefa.getDataLimite()
+                .isBefore(LocalDate.now())) throw new RuntimeException("A data da tarefa é inválida.");
+
+        return repository.save(tarefa);
     }
 
     public boolean excluirPorId(Long id) {

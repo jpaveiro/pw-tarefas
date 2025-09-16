@@ -18,4 +18,10 @@ export class TaskService {
             .get<Task[]>
             (this.apiUrl);
   }
+
+  public create(task: Task): Observable<Task> {
+    return this.http
+            .post<Task>
+            (this.apiUrl, task);
+  }
 }
