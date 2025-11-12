@@ -50,7 +50,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login/**", "/usuarios/**").permitAll()
+                .requestMatchers("/login/**", "/usuarios/**", "/tarefas/**").permitAll()
                 .anyRequest().authenticated()
         );
         http.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
